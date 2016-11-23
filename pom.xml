@@ -25,62 +25,48 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		<!-- 
-  	<dependency>
-  		<groupId>com.sun.media.imageio</groupId>
-  		<artifactId>jai_imageio</artifactId>
-  		<version>1.1</version>
-  	</dependency>
-		 -->
-  	<dependency>
-  		<groupId>com.sun.jna</groupId>
-  		<artifactId>jna</artifactId>
-  		<version>3.0.9</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.lowagie</groupId>
-  		<artifactId>itext</artifactId>
-  		<version>4.2.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>net.htmlparser</groupId>
-  		<artifactId>jericho-html</artifactId>
-  		<version>2.3</version>
-  	</dependency>
+		<!-- <dependency> <groupId>com.sun.media.imageio</groupId> <artifactId>jai_imageio</artifactId> 
+			<version>1.1</version> </dependency> -->
+		<dependency>
+			<groupId>com.sun.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>3.0.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.htmlparser</groupId>
+			<artifactId>jericho-html</artifactId>
+			<version>2.3</version>
+		</dependency>
 	</dependencies>
-<!--
+	<!-- <distributionManagement> <repository> <uniqueVersion>false</uniqueVersion> 
+		<id>sftp-repository-stable</id> <url>scpexe://maven.bncf.lan/var/www/maven.bncf.lan/repository/release</url> 
+		<layout>default</layout> </repository> </distributionManagement> <repositories> 
+		<repository> <snapshots> <enabled>false</enabled> </snapshots> <id>randalf.mx-release</id> 
+		<url>http://maven.bncf.lan/repository/release</url> </repository> </repositories> 
+		<build> <extensions> <extension> <groupId>org.apache.maven.wagon</groupId> 
+		<artifactId>wagon-ssh-external</artifactId> <version>1.0-beta-6</version> 
+		</extension> </extensions> </build> -->
+	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<excludes>
+					<exclude>**/log4j.xml</exclude>
+					<exclude>**/log4j.dtd</exclude>
+				</excludes>
+			</resource>
+		</resources>
+	</build>
 	<distributionManagement>
 		<repository>
-			<uniqueVersion>false</uniqueVersion>
-			<id>sftp-repository-stable</id>
-			<url>scpexe://maven.bncf.lan/var/www/maven.bncf.lan/repository/release</url>
-			<layout>default</layout>
+			<id>mvn-bncf</id>
+			<name>Maven BNCF-releases</name>
+			<url>http://maven.bncf.firenze.sbn.it/artifactory/libs-release-local</url>
 		</repository>
 	</distributionManagement>
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>randalf.mx-release</id>
-			<url>http://maven.bncf.lan/repository/release</url>
-		</repository>
-	</repositories>
-	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh-external</artifactId>
-				<version>1.0-beta-6</version>
-			</extension>
-		</extensions>
-	</build>
--->
-  <distributionManagement>
-    <repository>
-        <id>mvn-bncf</id>
-        <name>Maven BNCF-releases</name>
-        <url>http://maven.bncf.firenze.sbn.it/artifactory/libs-release-local</url>
-    </repository>
-</distributionManagement>
 </project>

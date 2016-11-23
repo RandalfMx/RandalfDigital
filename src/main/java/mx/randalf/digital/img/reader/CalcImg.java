@@ -62,29 +62,33 @@ public class CalcImg {
 	private BigInteger freqPlan = null;
 
 	public CalcImg(File fImg) throws InfoException {
-		Enumeration<String> keys = null;
+		this(fImg, false);
+	}
+
+	public CalcImg(File fImg, boolean basic) throws InfoException {
+//		Enumeration<String> keys = null;
 
 //		System.out.println("Img: "+fImg.getAbsolutePath());
 		
 		try {
-			info = new Info(fImg.getAbsolutePath());
-			log.debug("-------------------------------------------------------------");
-			log.debug("getImageClass: " + info.getImageClass());
-			log.debug("getImageDepth: " + info.getImageDepth());
-			log.debug("getImageFormat: " + info.getImageFormat());
-			log.debug("getImageGeometry: " + info.getImageGeometry());
-			log.debug("getImageHeight: " + info.getImageHeight());
-			log.debug("getImageWidth: " + info.getImageWidth());
-			log.debug("getPageGeometry: " + info.getPageGeometry());
-			log.debug("getPageHeight: " + info.getPageHeight());
-			log.debug("getPageWidth: " + info.getPageWidth());
-			log.debug("getSceneCount: " + info.getSceneCount());
+			info = new Info(fImg.getAbsolutePath(), basic);
+//			log.debug("-------------------------------------------------------------");
+//			log.debug("getImageClass: " + info.getImageClass());
+////			log.debug("getImageDepth: " + info.getImageDepth());
+//			log.debug("getImageFormat: " + info.getImageFormat());
+//			log.debug("getImageGeometry: " + info.getImageGeometry());
+//			log.debug("getImageHeight: " + info.getImageHeight());
+//			log.debug("getImageWidth: " + info.getImageWidth());
+//			log.debug("getPageGeometry: " + info.getPageGeometry());
+//			log.debug("getPageHeight: " + info.getPageHeight());
+//			log.debug("getPageWidth: " + info.getPageWidth());
+//			log.debug("getSceneCount: " + info.getSceneCount());
 
-			keys = info.getPropertyNames();
-			while (keys.hasMoreElements()) {
-				String key = keys.nextElement();
-				log.debug("\t" + key + " ------- " + info.getProperty(key));
-			}
+//			keys = info.getPropertyNames();
+//			while (keys.hasMoreElements()) {
+//				String key = keys.nextElement();
+//				log.debug("\t" + key + " ------- " + info.getProperty(key));
+//			}
 			this.fImg = fImg;
 			this.freqUnit = new BigInteger("2");
 			this.freqPlan = new BigInteger("2");
