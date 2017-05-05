@@ -2,7 +2,6 @@ package mx.randalf.digital.img.reader;
 
 import java.io.File;
 import java.math.BigInteger;
-import java.util.Enumeration;
 import java.util.GregorianCalendar;
 
 import javax.xml.datatype.DatatypeConfigurationException;

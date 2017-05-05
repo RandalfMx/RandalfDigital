@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import org.apache.log4j.Logger;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
 import org.im4java.core.IMOperation;
@@ -20,15 +21,30 @@ import org.im4java.process.ProcessStarter;
  */
 public class ConvertImg {
 
+	private Logger log = Logger.getLogger(ConvertImg.class);
+
 	private String pathImageMagick = null;
 
 	/**
+	 * @throws FileNotFoundException 
 	 * @throws IOException 
 	 * 
 	 */
-	public ConvertImg(String pathImageMagick) throws IOException {
-		this.pathImageMagick = pathImageMagick;
-		ProcessStarter.setGlobalSearchPath(pathImageMagick);
+	public ConvertImg(String pathImageMagick) throws FileNotFoundException //throws IOException 
+	{
+		File fConvert = null;
+		
+		try {
+			fConvert = new File(pathImageMagick+File.separator+"convert");
+			if (!fConvert.exists()){
+				throw new FileNotFoundException("Impossibile trovare il file "+fConvert.getAbsolutePath());
+			}
+			this.pathImageMagick = pathImageMagick;
+			ProcessStarter.setGlobalSearchPath(pathImageMagick);
+		} catch (FileNotFoundException e) {
+			log.error(e.getMessage(),e);
+			throw e;
+		}
 		
 	}
 

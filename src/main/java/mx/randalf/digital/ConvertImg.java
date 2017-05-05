@@ -74,7 +74,7 @@ public class ConvertImg {
 				} 
 			}
 			if (convertImg.isValid()){
-			convertImg.esegui();
+				convertImg.esegui();
 			} else {
 				System.out.println("E' necessario indicare i seguenti paramenti");
 				System.out.println("-image Indica il Path in cui si trova ImageMagick (Obbligatorio)");
@@ -169,7 +169,7 @@ public class ConvertImg {
 		}
 	}
 	
-	private void scanFolder(File f) throws NumberFormatException, IOException, InterruptedException, IM4JavaException{
+	private void scanFolder(File f) throws NumberFormatException, FileNotFoundException, IOException, InterruptedException, IM4JavaException{
 		File[] fl = null;
 		try {
 			fl = f.listFiles(new convertImgFileFilter());
@@ -182,6 +182,8 @@ public class ConvertImg {
 			}
 		} catch (NumberFormatException e) {
 			throw e;
+		} catch (FileNotFoundException e) {
+			throw e;
 		} catch (IOException e) {
 			throw e;
 		} catch (InterruptedException e) {
@@ -191,7 +193,7 @@ public class ConvertImg {
 		}
 	}
 
-	private void convertFile(File f) throws NumberFormatException, IOException, InterruptedException, IM4JavaException{
+	private void convertFile(File f) throws NumberFormatException, FileNotFoundException, IOException, InterruptedException, IM4JavaException{
 		mx.randalf.digital.img.convert.ConvertImg convertImg = null;
 		File fOutput = null;
 		
@@ -204,6 +206,8 @@ public class ConvertImg {
 					extOut);
 			convertImg.resize(f, fOutput, ppi,  width,  height,  quality);
 		} catch (NumberFormatException e) {
+			throw e;
+		} catch (FileNotFoundException e) {
 			throw e;
 		} catch (IOException e) {
 			throw e;
