@@ -136,7 +136,11 @@ public class CalcImg {
 	 */
 	public BigInteger getImageLength() throws InfoException {
 		BigInteger ris = new BigInteger("0");
-		ris = BigInteger.valueOf(info.getImageHeight());
+		try{
+			ris = BigInteger.valueOf(info.getImageHeight());
+		} catch(InfoException e){
+			ris = BigInteger.valueOf(info.getImageHeight(0));
+		}
 		return ris;
 	}
 
@@ -148,7 +152,11 @@ public class CalcImg {
 	 */
 	public BigInteger getImageWidth() throws InfoException {
 		BigInteger ris = new BigInteger("0");
-		ris = BigInteger.valueOf(info.getImageWidth());
+		try{
+			ris = BigInteger.valueOf(info.getImageWidth());
+		} catch(InfoException e){
+			ris = BigInteger.valueOf(info.getImageWidth(0));
+		}
 		return ris;
 	}
 
@@ -236,7 +244,11 @@ public class CalcImg {
 
 	public String getMagick() {
 		String ris = null;
-		ris = info.getImageFormat().split(" ")[0].trim();
+		try{
+			ris = info.getImageFormat().split(" ")[0].trim();
+		}catch(Exception e){
+			ris = info.getImageFormat(0).split(" ")[0].trim();
+		}
 		return ris;
 	}
 
@@ -260,7 +272,11 @@ public class CalcImg {
 	 */
 	public int getBitPerSample() throws InfoException {
 		int ris = 0;
-		ris = info.getImageDepth();
+		try {
+			ris = info.getImageDepth();
+		} catch (Exception e){
+			ris = info.getImageDepth(0);
+		}
 		return ris;
 	}
 
