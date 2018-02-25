@@ -134,7 +134,7 @@ public class ConvertImg {
 							File.separator+"TMP.jpg");
 					imo.addImage(fTmp.getAbsolutePath());
 					if (cc.isAsyncMode()){
-						System.out.println("Async");
+						log.debug("\n"+"Async");
 					}
 					cc.run(imo);
 					convertSrgb(fTmp, output);
