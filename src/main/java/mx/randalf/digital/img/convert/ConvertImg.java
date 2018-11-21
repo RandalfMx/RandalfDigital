@@ -200,6 +200,8 @@ public class ConvertImg {
 	public static String setStpiecePer(int anno, int mese, int giorno, String annata, String fascicolo,
 			String edizione) {
 		String stpiecePer = "";
+		String fasc = "";
+		DecimalFormat df8 = new DecimalFormat("00000000");
 		DecimalFormat df4 = new DecimalFormat("0000");
 		DecimalFormat df2 = new DecimalFormat("00");
 
@@ -220,12 +222,14 @@ public class ConvertImg {
 			stpiecePer += df2.format(Utility.converti(annata));
 		}
 		if (fascicolo != null && 
-				!fascicolo.trim().equals("") &&
-				new Integer(fascicolo)<10000) {
-			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
+				!fascicolo.trim().equals("")) {
+			  if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
 				stpiecePer += ":";
-			}
-			stpiecePer += df4.format(new Integer(fascicolo));
+			  }
+			  fasc = df8.format(new Integer(fascicolo));
+			  stpiecePer += fasc.substring(0, 4)+":";
+			  stpiecePer += fasc.substring(4);
+			  
 		}
 		if (edizione != null && !edizione.trim().equals("")) {
 			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
