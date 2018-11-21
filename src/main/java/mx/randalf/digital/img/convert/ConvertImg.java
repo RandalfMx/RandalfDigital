@@ -219,7 +219,9 @@ public class ConvertImg {
 		if (annata != null && !annata.trim().equals("")) {
 			stpiecePer += df2.format(Utility.converti(annata));
 		}
-		if (fascicolo != null && !fascicolo.trim().equals("")) {
+		if (fascicolo != null && 
+				!fascicolo.trim().equals("") &&
+				new Integer(fascicolo)<10000) {
 			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
 				stpiecePer += ":";
 			}
