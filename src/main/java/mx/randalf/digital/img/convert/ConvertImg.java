@@ -250,6 +250,8 @@ public class ConvertImg {
 				stpiecePer += "2";
 			} else if (edizione.equals("sera")) {
 				stpiecePer += "3";
+			} else if (edizione.equals("fascicolo")) {
+				stpiecePer += "4";
 			} else if (edizione.equals("straordinarie")) {
 				stpiecePer += "1*";
 			} else if (edizione.equals("supplementi")) {
