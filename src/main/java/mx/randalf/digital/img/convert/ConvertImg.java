@@ -227,18 +227,17 @@ public class ConvertImg {
 			} catch (NumberFormatException e) {
 				stpiecePer += df2.format(Utility.converti(annata));
 			}
-		}else {
+		} else {
 			stpiecePer += df2.format(0);
 		}
-		if (fascicolo != null && 
-				!fascicolo.trim().equals("")) {
-			  if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
+		if (fascicolo != null && !fascicolo.trim().equals("")) {
+			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
 				stpiecePer += ":";
-			  }
-			  fasc = df8.format(new Integer(fascicolo));
-			  stpiecePer += fasc.substring(0, 4)+":";
-			  stpiecePer += fasc.substring(4);
-			  
+			}
+			fasc = df8.format(new Integer(fascicolo));
+			stpiecePer += fasc.substring(0, 4) + ":";
+			stpiecePer += fasc.substring(4);
+
 		}
 		if (edizione != null && !edizione.trim().equals("")) {
 			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
@@ -381,5 +380,49 @@ public class ConvertImg {
 			stpiecePer += "+";
 		}
 		return stpiecePer;
+	}
+
+	public void ruota(File input, File output, Double ruota)
+			throws IOException, InterruptedException, IM4JavaException {
+		ConvertCmd cc = null;
+		IMOperation imo = null;
+
+		try {
+			cc = new ConvertCmd();
+			cc.setSearchPath(pathImageMagick);
+			imo = new IMOperation();
+			imo.rotate(ruota);
+			imo.addImage(input.getAbsolutePath());
+			imo.addImage(output.getAbsolutePath());
+			cc.run(imo);
+		} catch (IOException e) {
+			throw e;
+		} catch (InterruptedException e) {
+			throw e;
+		} catch (IM4JavaException e) {
+			throw e;
+		}
+	}
+
+	public void crop(File input, File output, int larghezza, int altezza, int x, int y)
+			throws IOException, InterruptedException, IM4JavaException {
+		ConvertCmd cc = null;
+		IMOperation imo = null;
+
+		try {
+			cc = new ConvertCmd();
+			cc.setSearchPath(pathImageMagick);
+			imo = new IMOperation();
+			imo.crop(larghezza, altezza, x, y);
+			imo.addImage(input.getAbsolutePath());
+			imo.addImage(output.getAbsolutePath());
+			cc.run(imo);
+		} catch (IOException e) {
+			throw e;
+		} catch (InterruptedException e) {
+			throw e;
+		} catch (IM4JavaException e) {
+			throw e;
+		}
 	}
 }
