@@ -8,7 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.im4java.core.CommandException;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
 import org.im4java.core.IMOperation;
@@ -21,7 +23,7 @@ import org.im4java.process.ProcessStarter;
  */
 public class ConvertImg {
 
-	private Logger log = Logger.getLogger(ConvertImg.class);
+	private Logger log = LogManager.getLogger(ConvertImg.class);
 
 	private String pathImageMagick = null;
 
@@ -105,6 +107,8 @@ public class ConvertImg {
 				info = new Info(input.getAbsolutePath());
 				if (info.getProperty("Resolution") != null) {
 					resolution = new Integer(info.getProperty("Resolution").split("x")[0]);
+				} else {
+					resolution = 72;
 				}
 
 				cc = new ConvertCmd();
@@ -119,6 +123,18 @@ public class ConvertImg {
 				if (ppi != resolution) {
 					imo.density(ppi);
 					imo.resample(ppi, ppi);
+					try {
+						log.debug("getImageWidth: "+info.getImageWidth());
+					}catch(Exception e ) {}
+					try {
+						log.debug("getImageHeight:"+info.getImageHeight());
+					}catch(Exception e ) {}
+					try {
+						log.debug("getPageHeight:"+info.getPageHeight());
+					}catch(Exception e ) {}
+					try {
+						log.debug("getPageWidth:"+info.getPageWidth());
+					}catch(Exception e ) {}
 					if (resolution > ppi) {
 						imo.resize(info.getImageWidth() / (resolution / ppi),
 								info.getImageHeight() / (resolution / ppi));
@@ -155,12 +171,19 @@ public class ConvertImg {
 				throw new FileNotFoundException("Il file [" + input.getAbsolutePath() + "] non esiste");
 			}
 		} catch (NumberFormatException e) {
+			log.error("Errore: ["+input.getAbsolutePath()+"] "+e.getMessage());
 			throw e;
 		} catch (IOException e) {
+			log.error("Errore: ["+input.getAbsolutePath()+"] "+e.getMessage());
 			throw e;
 		} catch (InterruptedException e) {
+			log.error("Errore: ["+input.getAbsolutePath()+"] "+e.getMessage());
 			throw e;
 		} catch (IM4JavaException e) {
+			log.error("Errore: ["+input.getAbsolutePath()+"] "+e.getMessage());
+			throw e;
+		} catch (Exception e) {
+			log.error("Errore: ["+input.getAbsolutePath()+"] "+e.getMessage());
 			throw e;
 		} finally {
 			if (fTmp != null && fTmp.exists()) {
@@ -192,6 +215,7 @@ public class ConvertImg {
 			throw e;
 		} catch (InterruptedException e) {
 			throw e;
+		} catch (CommandException e) {
 		} catch (IM4JavaException e) {
 			throw e;
 		}
