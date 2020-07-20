@@ -8,8 +8,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.im4java.core.Info;
 import org.im4java.core.InfoException;
 //import org.niso.pdfs.datadict.CompressiontypeNiso;
@@ -21,7 +20,7 @@ import org.im4java.core.InfoException;
 
 public class CalcImg {
 
-	private static Logger log = LogManager.getLogger(CalcImg.class);
+	private static Logger log = Logger.getLogger(CalcImg.class);
 	Info info = null;
 	File fImg = null;
 

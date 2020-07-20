@@ -8,8 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.im4java.core.CommandException;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
@@ -24,7 +23,7 @@ import org.im4java.process.ProcessStarter;
  */
 public class ConvertImg {
 
-  private Logger log = LogManager.getLogger(ConvertImg.class);
+  private Logger log = Logger.getLogger(ConvertImg.class);
 
   private String pathImageMagick = null;
 
