@@ -59,7 +59,7 @@ public class ConvertPdf {
 			for (int x = 0; x < filesImg.length; x++) {
 				imo.addImage(filesImg[x].getAbsolutePath());
 			}
-			imo.quality(new Double("25"));
+			imo.quality(Double.valueOf("25")); // new Double("25"));
 //			imo.resize(50);
 			imo.addImage(filePdf.getAbsolutePath());
 			// convert -quality 25 -resize 50% *.jpg -adjoin output.pdf

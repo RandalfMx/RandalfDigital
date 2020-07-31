@@ -30,7 +30,7 @@ public class ConvertImg {
 
 	private int height = 0;
 
-	private Double quality = new Double("60");
+	private Double quality = Double.valueOf("60"); //new Double("60");
 
 	/**
 	 * 
@@ -57,19 +57,19 @@ public class ConvertImg {
 					convertImg.setPathOutput(args[x+1]);
 					x++;
 				} else if (args[x].equals("-ppi")){
-					convertImg.setPpi(new Integer(args[x+1]));
+					convertImg.setPpi(Integer.valueOf(args[x+1])); // new Integer(args[x+1]));
 					x++;
 				} else if (args[x].equals("-extOut")){
 					convertImg.setExtOut(args[x+1]);
 					x++;
 				} else if (args[x].equals("-width")){
-					convertImg.setWidth(new Integer(args[x+1]));
+					convertImg.setWidth(Integer.valueOf(args[x+1])); // new Integer(args[x+1]));
 					x++;
 				} else if (args[x].equals("-height")){
-					convertImg.setHeight(new Integer(args[x+1]));
+					convertImg.setHeight(Integer.valueOf(args[x+1])); // new Integer(args[x+1]));
 					x++;
 				} else if (args[x].equals("-quality")){
-					convertImg.setQuality(new Double(args[x+1]));
+					convertImg.setQuality(Double.valueOf(args[x+1])); // new Double(args[x+1]));
 					x++;
 				} 
 			}
