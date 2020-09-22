@@ -300,6 +300,8 @@ public class ConvertImg {
 				stpiecePer += "1+";
 			} else {
 			}
+		} else {
+			stpiecePer += ":1";
 		}
 
 		return stpiecePer;

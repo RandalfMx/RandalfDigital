@@ -84,5 +84,5 @@
 			<url>http://maven.bncf.firenze.sbn.it/artifactory/libs-release-local</url>
 		</repository>
 	</distributionManagement>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 </project>
