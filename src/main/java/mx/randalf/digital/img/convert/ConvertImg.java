@@ -282,26 +282,13 @@ public class ConvertImg {
 			stpiecePer += fasc.substring(4);
 
 		}
+		
 		if (edizione != null && !edizione.trim().equals("")) {
-			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
-				stpiecePer += ":";
-			}
-			if (edizione.equals("mattino")) {
-				stpiecePer += "1";
-			} else if (edizione.equals("pomeriggio")) {
-				stpiecePer += "2";
-			} else if (edizione.equals("sera")) {
-				stpiecePer += "3";
-			} else if (edizione.equals("fascicolo")) {
-				stpiecePer += "4";
-			} else if (edizione.equals("straordinarie")) {
-				stpiecePer += "1*";
-			} else if (edizione.equals("supplementi")) {
-				stpiecePer += "1+";
+			if (edizione.startsWith(":")) {
+				stpiecePer += edizione;
 			} else {
+				stpiecePer += ":"+edizione;
 			}
-		} else {
-			stpiecePer += ":1";
 		}
 
 		return stpiecePer;
