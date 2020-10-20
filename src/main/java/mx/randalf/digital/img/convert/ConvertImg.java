@@ -182,7 +182,7 @@ public class ConvertImg {
 					} catch (IM4JavaException e) {
 						System.out.println(e.getMessage());
 					}
-					convertSrgb(fTmp, output);
+					convertSrgb(fTmp, output, quality);
 				} else {
 					imo.addImage(output.getAbsolutePath());
 					cc.run(imo);
@@ -215,7 +215,7 @@ public class ConvertImg {
 		}
 	}
 
-	private void convertSrgb(File input, File output) throws IOException, InterruptedException, IM4JavaException {
+	private void convertSrgb(File input, File output, Double quality) throws IOException, InterruptedException, IM4JavaException {
 		ConvertCmd cc = null;
 		IMOperation imo = null;
 
@@ -228,7 +228,11 @@ public class ConvertImg {
 			imo.colorspace("sRGB");
 			imo.type("TrueColor");
 			imo.units("PixelsPerInch");
-			imo.quality(Double.valueOf("60"));// new Double("60"));
+			if (quality==null || quality.intValue()==0) {
+				imo.quality(Double.valueOf("60"));// new Double("60"));
+			} else {
+				imo.quality(quality);// new Double("60"));
+			}
 			imo.addImage(output.getAbsolutePath());
 			cc.run(imo);
 		} catch (IOException e) {
