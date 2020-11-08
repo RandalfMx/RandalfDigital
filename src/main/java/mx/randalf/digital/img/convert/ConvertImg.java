@@ -94,7 +94,8 @@ public class ConvertImg {
 		IMOperation imo = null;
 		CalcImg calcImg = null;
 //    Info info = null;
-		int resolution = 0;
+		double resolution = 0;
+		double perc = 0;
 		File fTmp = null;
 		Integer iWidth = null;
 		Integer iHeigth = null;
@@ -115,7 +116,7 @@ public class ConvertImg {
 					System.out.println(e.getMessage());
 				}
 				if (calcImg.getDpi() != null) {
-					resolution = calcImg.getDpi().intValue();
+					resolution = calcImg.getDpi().doubleValue();
 //            		  new Integer(
 //        		  new Integer(
 //              info.getProperty("Resolution").split("x")[0]);
@@ -152,11 +153,13 @@ public class ConvertImg {
 //          } catch (Exception e) {
 //          }
 					if (resolution > ppi) {
-						imo.resize(calcImg.getImageWidth().intValue() / (resolution / ppi),
-								calcImg.getImageLength().intValue() / (resolution / ppi));
+						perc = (resolution / ppi);
+						imo.resize((int)(calcImg.getImageWidth().intValue() / perc),
+								(int)(calcImg.getImageLength().intValue() / perc));
 					} else {
-						imo.resize(calcImg.getImageWidth().intValue() * (ppi / resolution),
-								calcImg.getImageLength().intValue() * (ppi / resolution));
+						perc = (ppi / resolution);
+						imo.resize((int)(calcImg.getImageWidth().intValue() * perc),
+								(int)(calcImg.getImageLength().intValue() * perc));
 
 					}
 				}
