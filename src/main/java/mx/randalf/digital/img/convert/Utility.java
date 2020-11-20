@@ -200,4 +200,29 @@ public class Utility {
 		}
 		return sMese;
 	}
+
+	public static String convertMeseSmol(int mese){
+		Vector<String> mesi=null;
+		String sMese = "nd";
+		
+		mesi = new Vector<String>();
+		mesi.add("gen.");
+		mesi.add("feb.");
+		mesi.add("mar.");
+		mesi.add("apr.");
+		mesi.add("mag.");
+		mesi.add("giu.");
+		mesi.add("lug.");
+		mesi.add("ago.");
+		mesi.add("set.");
+		mesi.add("ott.");
+		mesi.add("nov.");
+		mesi.add("dic.");
+		if (mese>0 &&
+				mesi.size()>=mese &&
+				mesi.get(mese-1) != null){
+			sMese = mesi.get(mese-1);
+		}
+		return sMese;
+	}
 }

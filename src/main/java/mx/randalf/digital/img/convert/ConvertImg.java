@@ -249,7 +249,7 @@ public class ConvertImg {
 	}
 
 	public static String setStpiecePer(int anno, int mese, int giorno, String annata, String fascicolo,
-			String edizione) {
+			String edizione, Boolean ciancio) {
 		String stpiecePer = "";
 		String fasc = "";
 		int iAnnata = 0;
@@ -284,10 +284,13 @@ public class ConvertImg {
 			if (!stpiecePer.trim().equals("") && !stpiecePer.trim().endsWith(")")) {
 				stpiecePer += ":";
 			}
-			fasc = df8.format(Integer.valueOf(fascicolo)); // new Integer(fascicolo));
-			stpiecePer += fasc.substring(0, 4) + ":";
-			stpiecePer += fasc.substring(4);
-
+			if (ciancio) {
+				stpiecePer += df4.format(Integer.valueOf(fascicolo));
+			} else {
+				fasc = df8.format(Integer.valueOf(fascicolo)); // new Integer(fascicolo));
+				stpiecePer += fasc.substring(0, 4) + ":";
+				stpiecePer += fasc.substring(4);
+			}
 		}
 		
 		if (edizione != null && !edizione.trim().equals("")) {
