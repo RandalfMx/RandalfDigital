@@ -175,7 +175,8 @@ public class ConvertImg {
 					imo.resize(resize);
 				}
 				if (!output.getName().toLowerCase().endsWith(".tif")) {
-					fTmp = new File(output.getParentFile().getAbsolutePath() + File.separator + "TMP.jpg");
+					fTmp = new File(output.getParentFile().getAbsolutePath() + 
+							File.separator + "TMP-"+output.getName());
 					imo.addImage(fTmp.getAbsolutePath());
 					if (cc.isAsyncMode()) {
 						log.debug("\n" + "Async");
