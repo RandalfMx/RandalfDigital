@@ -62,14 +62,6 @@
 			<version>1.2.17</version>
 		</dependency>
 	</dependencies>
-	<!-- <distributionManagement> <repository> <uniqueVersion>false</uniqueVersion> 
-		<id>sftp-repository-stable</id> <url>scpexe://maven.bncf.lan/var/www/maven.bncf.lan/repository/release</url> 
-		<layout>default</layout> </repository> </distributionManagement> <repositories> 
-		<repository> <snapshots> <enabled>false</enabled> </snapshots> <id>randalf.mx-release</id> 
-		<url>http://maven.bncf.lan/repository/release</url> </repository> </repositories> 
-		<build> <extensions> <extension> <groupId>org.apache.maven.wagon</groupId> 
-		<artifactId>wagon-ssh-external</artifactId> <version>1.0-beta-6</version> 
-		</extension> </extensions> </build> -->
 	<build>
 		<resources>
 			<resource>
@@ -89,4 +81,46 @@
 		</repository>
 	</distributionManagement>
 	<version>3.0.7</version>
+
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>RuotaImmagine</id>
+      <build>
+        <finalName>RuotaImmagine</finalName>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <archive>
+                <manifest>
+                  <mainClass>mx.randalf.digital.batch.RuotaImmagine</mainClass>
+                </manifest>
+              </archive>
+              <finalName>RuotaImmagine</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+            <executions>
+              <execution>
+                <id>make-assembly</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
